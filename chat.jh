@@ -1,0 +1,35 @@
+entity Chat {
+}
+
+entity Message {
+	text String
+}
+
+entity Client {
+	name String
+}
+entity Operator {
+	name String
+}
+
+relationship ManyToOne {
+	Chat{client} to Client
+}
+
+relationship ManyToOne {
+	Chat{operator} to Operator
+}
+
+relationship OneToMany {
+	Chat{message} to Message
+}
+
+// Set pagination options
+paginate Chat, Message with infinite-scroll
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
